@@ -1,6 +1,6 @@
 # React Native Restauracja
 
-![Zdjęcie aplikacji](https://cdn.discordapp.com/attachments/933053213391859752/1089538365013098506/recep.png)
+![Zdjęcie aplikacji](https://cdn.discordapp.com/attachments/826446165784002561/1089539947976982528/recep.png)
 
   
   
