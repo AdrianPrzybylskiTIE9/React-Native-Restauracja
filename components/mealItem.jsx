@@ -16,7 +16,6 @@ const MealItem = (props) => {
         }
 
     }
-
     return (
         <Pressable style={styles.itemContainer} onPress={() => {props.navigation.navigate('Meal',{title: props.title, imageUrl: props.imageUrl, ingredients: props.ingredients, affordability: props.affordability, duration: props.duration, complexity: props.complexity, steps: props.steps})}}>
             <Image 
@@ -25,8 +24,8 @@ const MealItem = (props) => {
             />
             <View style={styles.mealTextContainer}>
                 <Text style={styles.mealTitle}>{props.title}</Text>
-                <Text style={[styles.mealAffordability, {color: complexityColor[props.affordability]}]}>{props.affordability}</Text>
-                <Text style={[styles.mealDuration, {color: durationColor(props.duration), opacity: 0.8}]}>{props.duration} min</Text>
+                <Text style={[styles.mealAffordability, {color: complexityColor[props.affordability]}]}>💵 {props.affordability}</Text>
+                <Text style={[styles.mealDuration, {color: durationColor(props.duration), opacity: 0.8}]}>🕑 {props.duration} min</Text>
  
             </View>
         </Pressable>

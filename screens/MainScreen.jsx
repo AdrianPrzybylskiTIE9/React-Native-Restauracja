@@ -39,7 +39,6 @@ function MainScren({navigation}){
     }
     let catPressHandler = (catId) => {
         filteredMeals(catId)
-        console.log(catId);
     }
     const searchMeals = (val) => {
         setMeals(MEALS.filter((mealItem) => {
@@ -96,12 +95,12 @@ const styles = StyleSheet.create({
     title: {
         fontWeight: 'bold',
         fontSize: 25,
-        marginVertical: 10,
+        marginVertical: 25,
     },
     paragraph: {
         fontWeight: 'bold',
         fontSize: 20,
-        marginVertical: 5,
+        marginVertical: 15,
     },
     categoryContainer: {
         height: 40,

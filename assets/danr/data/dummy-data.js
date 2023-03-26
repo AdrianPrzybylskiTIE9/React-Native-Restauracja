@@ -242,7 +242,7 @@ export const MEALS = [
       ['Onion','1'],
       ['Garlic','2'],
       ['Ginger','1'],
-      ['Almonds','4'],
+      ['Almond','4'],
       ['Cayenne Pepper','1'],
       ['Coconut Milk','500ml']
     ],
@@ -277,8 +277,8 @@ export const MEALS = [
       ['Milk','4','1/3'],
       ['Salt','1'],
       ['Cayenne Pepper','1'],
-      ['Large Egg Yolk','1'],
-      ['Large Egg Whites','2'],
+      ['Egg','1'],
+      ['Egg Whites','2'],
       ['Cream of Tartar','1'],
       ['White Sugar','1']
     ],

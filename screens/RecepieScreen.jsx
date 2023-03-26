@@ -1,10 +1,25 @@
 import { View, Text, StyleSheet, FlatList, ScrollView, Platform, Image } from 'react-native'
 import React, { useState } from 'react';
+import Icons from '../assets/icons/Icons';
 
 
 function RecepieScreen({route, navigation}){
     const {title, imageUrl, ingredients, affordability, duration, complexity, steps} = route.params
-    console.log(ingredients);
+
+    const renderIngredient = (item) => {
+        const imgName = item['item'][0].replace("'", "").toLowerCase()
+
+        return (
+            <View style={styles.ingredientContainer}>   
+                <Image
+                    source={Icons[imgName]}
+                    style={styles.ingredientImage}
+                />
+                {item['item'].length > 1 ? <Text style={styles.ingredientNum}>{item['item'][1]}</Text> : null}
+                <Text>{item['item'][0]}</Text>
+            </View>
+        )
+    }
 
     return (
         <View style={styles.container}>
@@ -30,20 +45,7 @@ function RecepieScreen({route, navigation}){
                     <FlatList
                         data={ingredients}
                         keyExtractor={(item, index) => index.toString()}
-                        renderItem={({item}) => {
-                            const imageName = item[0].replace(/ /g, '-').replace(/`/g, '').toLowerCase();
-                            const imageSource = '../assets/icons/'+imageName+'.png'
-                            console.log(imageSource);
-
-                            return(
-                            <View style={styles.ingredientContainer}>   
-                                <Image
-                                    // source={require(imageSource)}
-                                    style={styles.ingredientImage}
-                                />
-                                <Text style={styles.mealIngredients}>{item[0]}</Text>
-                            </View>)
-                        }}
+                        renderItem={renderIngredient}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         showsVerticalScrollIndicator={false}
@@ -51,18 +53,18 @@ function RecepieScreen({route, navigation}){
                     ></FlatList>
 
                     <Text style={{fontWeight: 'bold', fontSize: 18}}>Steps</Text>
-                    {/* <FlatList
-                        data={steps}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({item, index}) => (
-                            <View style={styles.stepContainer}>
-                                <Text style={styles.stepText}><Text style={{fontWeight: 'bold', fontSize: 18}}>{index+1}.  </Text>{item}</Text>
+                    <View>
+                        {steps.map((item, index) => (
+                            <View key={index} style={styles.stepContainer}>
+                            <Text style={styles.stepText}>
+                                <Text style={{fontWeight: 'bold', fontSize: 18}}>
+                                    {index+1}.  
+                                </Text>
+                                {item}
+                            </Text>
                             </View>
-                            
-                        )}
-                        scrollEnabled={false}
-                        
-                    ></FlatList> */}
+                        ))}
+                    </View>
                     
                 </ScrollView>
             </View>
@@ -121,21 +123,29 @@ const styles = StyleSheet.create({
     ingredients: {
         flex: 1,
         flexDirection: 'row',
-        // marginVertical: 10,
     },
     ingredientContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 25,
         backgroundColor: '#fefeff',
-        // width: 75,
-        height: 75,
+        padding: 10,
         marginRight: 20,
         marginVertical: 10,
     },
     ingredientImage: {
         width: 50,
         height: 50,
+    },
+    ingredientNum: {
+        top: -10,
+        backgroundColor: 'black',
+        color: 'white',
+        fontSize: 9,
+        fontWeight: 'bold',
+        borderRadius: 5,
+        padding: 2,
+        alignSelf: 'flex-end'
     },
     mealIngredients: {
         textAlign: 'center',
@@ -147,9 +157,6 @@ const styles = StyleSheet.create({
     },
     steps: {
         flex: 1,
-        // flexDirection: 'row',
-        // marginVertical: 10,
-        // height: 500
     },
     stepContainer: {
         width: '100%',
